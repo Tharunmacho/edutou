@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTou Grocery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #004d99;
+            padding: 15px;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .search-bar {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .hero {
+            background-color: #f8f8f8;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .hero img {
+            width: 40%;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            color: #004d99;
+        }
+
+        .hero p {
+            color: #555;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffcc;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            color: green;
+        }
+
+        .btn {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #e65c00;
+        }
+
+        .footer {
+            background-color: #004d99;
+            color: white;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }
+
+        .contact {
+            background-color: #d9eaf7;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #004d99;
+        }
+
+        .contact p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>EduTou Grocery Store</div>
+        <input type="text" class="search-bar" id="search" placeholder="Search products...">
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Elevate Your Grocery Experience</h1>
+        <p>Premium, hand-selected organic produce and artisanal goods. Delivered with care from farm to table.</p>
+        <img src="shop.png" alt="Grocery Display">
+    </div>
+
+    <!-- Product Section -->
+    <div class="container" id="products"></div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <p>📍 123 Fresh Market Street, GreenVille, CA 94587</p>
+        <p>📞 9092317264</p>
+        <p>✉️ <a href="mailto:sujan@edutou.com">sujan@edutou.com</a></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 EduTou Grocery Store</div>
+
+    <script>
+        const groceries = [
+            { name: "Organic Avocado", price: "₹150", img: "ava.png" },
+            { name: "Fresh Strawberries", price: "₹200", img: "straberry.png" },
+            { name: "Sourdough Bread", price: "₹100", img: "bread.png" },
+            { name: "Organic Spinach", price: "₹80", img: "spinach.png" },
+            { name: "Artisan Cheese", price: "₹250", img: "cheese.png" },
+            { name: "Bell Peppers", price: "₹90", img: "bell.png" }
+        ];
+
+        function displayProducts(filter = "") {
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = ""; // Clear previous products
+
+            groceries
+                .filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(item => {
+                    productsContainer.innerHTML += `
+                        <div class="card">
+                            <img src="${item.img}" alt="${item.name}">
+                            <h3>${item.name}</h3>
+                            <p class="price">${item.price}</p>
+                            <button class="btn">Add to Cart</button>
+                        </div>`;
+                });
+        }
+
+        document.getElementById("search").addEventListener("input", (e) => {
+            displayProducts(e.target.value);
+        });
+
+        // Load products on page load
+        displayProducts();
+    </script>
+
+</body>
+</html>
